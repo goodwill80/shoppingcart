@@ -2,7 +2,7 @@ import { createContext, useReducer, useState, useEffect } from 'react'
 import products from './data';
 import CartReducer from './Reducer';
 
-
+const url = 'https://course-api.com/react-useReducer-cart-project'
 const AppContext = createContext();
 
 const initialCart = {
@@ -31,6 +31,20 @@ function AppContextProvider(props) {
     const decrease = (id) => {
         dispatch({ type: "DECREASE", payload: id });
     }
+
+    const fetchData = async()=> {
+        dispatch({ type: "LOADING" });
+        const response = await fetch('https://course-api.com/react-useReducer-cart-project');
+        const data = await response.json();
+        dispatch({ type: "DISPLAY_ITEMS", payload: data });
+    }
+
+    useEffect(()=>{
+        fetchData();
+        const loading = setTimeout(()=>{
+            dispatch({ type: "STOP_LOADING"});
+        }, 2000)
+    }, []);
 
     useEffect(()=>{
         dispatch({type: "GET_TOTAL"})

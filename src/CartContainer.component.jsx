@@ -3,7 +3,7 @@ import { AppContext } from './Context'
 import CartItem from './CartItem.component';
 
 function CartContainer() {
-    const { products, isLoading, amount, total, clearCart } = useContext(AppContext);
+    const { products, isLoading, value, total, clearCart } = useContext(AppContext);
     if(products.length === 0) {
         return (
             <section className="pt-8 text-center px-2 pb-4">
@@ -32,7 +32,7 @@ function CartContainer() {
         <footer className="flex items-center justify-between md:w-1/2 px-12 pt-4 mx-auto">
         <div className='cart-total'>
           <h4 className="capitalize font-bold">
-            total <span>${amount}</span>
+            total <span>${value.toFixed(2)}</span>
           </h4>
         </div>
         <button onClick={clearCart} className='text-blue-500 capitalize ml-4 hover:underline hover:text-red-400'>
