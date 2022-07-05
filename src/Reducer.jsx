@@ -2,7 +2,7 @@ const CartReducer = (state, action) => {
     const { products, isLoading, value, total } = state;
 
     switch(action.type) {
-        
+
         case "CLEAR_CART":
             return {...state, products: []};
 
@@ -40,6 +40,7 @@ const CartReducer = (state, action) => {
         
         default:
             return state;
+            // throw new Error('no matching action type')
     }
 }
 

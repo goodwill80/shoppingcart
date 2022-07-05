@@ -52,6 +52,7 @@ function AppContextProvider(props) {
 
     useEffect(()=>{
         dispatch({type: "GET_TOTAL"})
+        dispatch({type: 123})
     },[cart.products])
 
   return (
