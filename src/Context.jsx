@@ -17,6 +17,10 @@ function AppContextProvider(props) {
     const [ cart, dispatch ] = useReducer(CartReducer, initialCart);
 
     const clearCart = ()=> {
+        dispatch({ type: "LOADING"})
+        let load = setTimeout(()=>{
+            dispatch({ type: "STOP_LOADING"});
+        }, 1000)
         dispatch({ type: "CLEAR_CART" })
     }
 
@@ -43,7 +47,7 @@ function AppContextProvider(props) {
         fetchData();
         const loading = setTimeout(()=>{
             dispatch({ type: "STOP_LOADING"});
-        }, 2000)
+        }, 1000)
     }, []);
 
     useEffect(()=>{
